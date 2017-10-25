@@ -38,7 +38,7 @@ public class GameStartActivity extends Activity {
         switch (msg.what) {
             case R.id.clientReady:
                 // Now an user can speak.
-                txtResult.setText("Connected");
+                //txtResult.setText("Connected");
                 writer = new AudioWriterPCM(
                         Environment.getExternalStorageDirectory().getAbsolutePath() + "/NaverSpeechTest");
                 writer.open("Test");
@@ -83,7 +83,7 @@ public class GameStartActivity extends Activity {
                 }
 
                 mResult = "Error code : " + msg.obj.toString();
-                txtResult.setText(mResult);
+                //txtResult.setText(mResult);
                 //startImageButton.setText(R.string.str_start);
                 startImageButton.setEnabled(true);
                 break;
@@ -109,6 +109,8 @@ public class GameStartActivity extends Activity {
 
         handler = new RecognitionHandler(this);
         naverRecognizer = new NaverRecognizer(this, handler, CLIENT_ID);
+        txtResult.setText(getIntent().getExtras().getString("TEXT"));
+
 
         startImageButton.setOnClickListener(new View.OnClickListener() {
 
@@ -118,7 +120,7 @@ public class GameStartActivity extends Activity {
                     // Start button is pushed when SpeechRecognizer's state is inactive.
                     // Run SpeechRecongizer by calling recognize().
                     mResult = "";
-                    txtResult.setText("Connecting...");
+                    //txtResult.setText("Connecting...");
                     //startImageButton.setText(R.string.str_stop);
                     naverRecognizer.recognize();
                 } else {
@@ -143,7 +145,7 @@ public class GameStartActivity extends Activity {
         super.onResume();
 
         mResult = "";
-        txtResult.setText("");
+        //txtResult.setText("");
         //startImageButton.setText(R.string.str_start);
         startImageButton.setEnabled(true);
     }
