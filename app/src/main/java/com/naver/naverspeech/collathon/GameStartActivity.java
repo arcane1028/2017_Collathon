@@ -1,13 +1,14 @@
 package com.naver.naverspeech.collathon;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.naver.naverspeech.collathon.utils.AudioWriterPCM;
@@ -16,9 +17,9 @@ import com.naver.speech.clientapi.SpeechRecognitionResult;
 import java.lang.ref.WeakReference;
 import java.util.List;
 
-public class GameActivity extends Activity {
+public class GameStartActivity extends Activity {
 
-	private static final String TAG = GameActivity.class.getSimpleName();
+	private static final String TAG = GameStartActivity.class.getSimpleName();
 	private static final String CLIENT_ID = "_m0FWGMNhjAj1tSSzEEl";
     // 1. "내 애플리케이션"에서 Client ID를 확인해서 이곳에 적어주세요.
     // 2. build.gradle (Module:app)에서 패키지명을 실제 개발자센터 애플리케이션 설정의 '안드로이드 앱 패키지 이름'으로 바꿔 주세요
@@ -27,7 +28,7 @@ public class GameActivity extends Activity {
     private NaverRecognizer naverRecognizer;
 
     private TextView txtResult;
-    private Button btnStart;
+    private ImageButton startImageButton;
     private String mResult;
 
     private AudioWriterPCM writer;
@@ -66,6 +67,10 @@ public class GameActivity extends Activity {
             	}
                 mResult = strBuf.toString();
                 txtResult.setText(mResult);
+                Intent intent = new Intent(GameStartActivity.this, GameResultActivity.class);
+                startActivity(intent);
+                finish();
+
                 break;
 
             case R.id.recognitionError:
@@ -75,8 +80,8 @@ public class GameActivity extends Activity {
 
                 mResult = "Error code : " + msg.obj.toString();
                 txtResult.setText(mResult);
-                btnStart.setText(R.string.str_start);
-                btnStart.setEnabled(true);
+                //startImageButton.setText(R.string.str_start);
+                startImageButton.setEnabled(true);
                 break;
 
             case R.id.clientInactive:
@@ -84,8 +89,8 @@ public class GameActivity extends Activity {
                     writer.close();
                 }
 
-                btnStart.setText(R.string.str_start);
-                btnStart.setEnabled(true);
+                //startImageButton.setText(R.string.str_start);
+                startImageButton.setEnabled(true);
                 break;
         }
     }
@@ -93,15 +98,15 @@ public class GameActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+        setContentView(R.layout.activity_game_start);
 
-        txtResult = (TextView) findViewById(R.id.txt_result);
-        btnStart = (Button) findViewById(R.id.btn_start);
+        txtResult = (TextView) findViewById(R.id.start_text_sentence);
+        startImageButton = (ImageButton) findViewById(R.id.start_btn_recode);
 
         handler = new RecognitionHandler(this);
         naverRecognizer = new NaverRecognizer(this, handler, CLIENT_ID);
 
-        btnStart.setOnClickListener(new View.OnClickListener() {
+        startImageButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -110,11 +115,11 @@ public class GameActivity extends Activity {
                     // Run SpeechRecongizer by calling recognize().
                     mResult = "";
                     txtResult.setText("Connecting...");
-                    btnStart.setText(R.string.str_stop);
+                    //startImageButton.setText(R.string.str_stop);
                     naverRecognizer.recognize();
                 } else {
                     Log.d(TAG, "stop and wait Final Result");
-                    btnStart.setEnabled(false);
+                    startImageButton.setEnabled(false);
 
                     naverRecognizer.getSpeechRecognizer().stop();
                 }
@@ -135,8 +140,8 @@ public class GameActivity extends Activity {
 
         mResult = "";
         txtResult.setText("");
-        btnStart.setText(R.string.str_start);
-        btnStart.setEnabled(true);
+        //startImageButton.setText(R.string.str_start);
+        startImageButton.setEnabled(true);
     }
 
     @Override
@@ -148,15 +153,15 @@ public class GameActivity extends Activity {
 
     // Declare handler for handling SpeechRecognizer thread's Messages.
     static class RecognitionHandler extends Handler {
-        private final WeakReference<GameActivity> mActivity;
+        private final WeakReference<GameStartActivity> mActivity;
 
-        RecognitionHandler(GameActivity activity) {
-            mActivity = new WeakReference<GameActivity>(activity);
+        RecognitionHandler(GameStartActivity activity) {
+            mActivity = new WeakReference<GameStartActivity>(activity);
         }
 
         @Override
         public void handleMessage(Message msg) {
-            GameActivity activity = mActivity.get();
+            GameStartActivity activity = mActivity.get();
             if (activity != null) {
                 activity.handleMessage(msg);
             }
