@@ -11,23 +11,30 @@
     android:background="#ffffff">
 
     <Button
-        android:id="@+id/btn_start"
+        android:id="@+id/main_btn_select"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="@string/str_start" />
-
-    <TextView
-        android:id="@+id/txt_result"
+        android:text="Select"/>
+    <Button
+        android:id="@+id/main_btn_random"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btn_start"
         android:layout_centerHorizontal="true"
-        android:singleLine="false" />
-
-    <EditText
+        android:text="Random"
+        android:layout_below="@+id/main_btn_select"/>
+    <Button
+        android:id="@+id/main_btn_create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="윤동현"/>
-
+        android:layout_centerHorizontal="true"
+        android:text="Create"
+        android:layout_below="@+id/main_btn_random"/>
+    <Button
+        android:id="@+id/main_btn_My"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="My"
+        android:layout_below="@+id/main_btn_create"/>
 </RelativeLayout>
