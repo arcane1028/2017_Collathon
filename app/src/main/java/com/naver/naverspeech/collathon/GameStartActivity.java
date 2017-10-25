@@ -51,7 +51,7 @@ public class GameStartActivity extends Activity {
             case R.id.partialResult:
                 // Extract obj property typed with String.
                 mResult = (String) (msg.obj);
-                txtResult.setText(mResult);
+                //txtResult.setText(mResult);
                 break;
 
             case R.id.finalResult:
@@ -60,14 +60,18 @@ public class GameStartActivity extends Activity {
             	SpeechRecognitionResult speechRecognitionResult = (SpeechRecognitionResult) msg.obj;
                 //TODO 결과 받기
             	List<String> results = speechRecognitionResult.getResults();
-            	StringBuilder strBuf = new StringBuilder();
+            	/*
+                StringBuilder strBuf = new StringBuilder();
             	for(String result : results) {
             		strBuf.append(result);
             		strBuf.append("\n");
             	}
                 mResult = strBuf.toString();
                 txtResult.setText(mResult);
+                */
+
                 Intent intent = new Intent(GameStartActivity.this, GameResultActivity.class);
+                intent.putExtra("RESULT", results.get(0));
                 startActivity(intent);
                 finish();
 
