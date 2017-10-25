@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class GameResultActivity extends AppCompatActivity {
 
@@ -16,6 +17,11 @@ public class GameResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game_result);
 
         Button button = (Button)findViewById(R.id.result_btn_back);
+        TextView resultTextView = (TextView)findViewById(R.id.result_text_score);
+
+        Intent intent = getIntent();
+
+        resultTextView.setText(intent.getExtras().getString("RESULT"));
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
