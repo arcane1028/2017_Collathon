@@ -8,7 +8,7 @@
         android:id="@+id/start_text_sentence"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/start_btn_recode"
+        android:layout_above="@+id/start_btn_recode"
         android:layout_centerHorizontal="true"
         android:text="예시 문장이 이곳에 보여 집니다." />
 
