@@ -45,12 +45,10 @@ public class MainActivity extends AppCompatActivity {
                             case 0:
                                 intent.putExtra("TEXT", "간장공장");
                                 startActivity(intent);
-                                finish();
                                 break;
                             case 1:
                                 intent.putExtra("TEXT", "경찰청창살");
                                 startActivity(intent);
-                                finish();
                                 break;
 
                         }
@@ -73,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, GameStartActivity.class);
 
                 startActivity(intent);
-                finish();
 
             }
         });
