@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, GameStartActivity.class);
-
+                intent.putExtra("TEXT", "간장공장");
                 startActivity(intent);
 
             }
