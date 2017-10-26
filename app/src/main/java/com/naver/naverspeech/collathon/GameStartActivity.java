@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.naver.naverspeech.collathon.utils.AudioWriterPCM;
 import com.naver.speech.clientapi.SpeechRecognitionResult;
@@ -32,7 +33,7 @@ public class GameStartActivity extends Activity {
     private String mResult;
 
     private AudioWriterPCM writer;
-
+    private GameScore gameScore;
     // Handle speech recognition Messages.
     private void handleMessage(Message msg) {
         switch (msg.what) {
@@ -72,6 +73,10 @@ public class GameStartActivity extends Activity {
 
                 Intent intent = new Intent(GameStartActivity.this, GameResultActivity.class);
                 intent.putExtra("RESULT", results.get(0));
+                double resultScore = gameScore.parseSentence(results.get(0),getIntent().getExtras().getString("TEXT"));
+                //디버깅을 위한 함수로서 나중에 Log로 바꿀것
+                Toast.makeText(this,results.get(0)+"\n"+getIntent().getExtras().getString("TEXT"),Toast.LENGTH_LONG).show();
+                intent.putExtra("RESULT_SCORE",gameScore.calculateScore(100,0,(int)resultScore));
                 startActivity(intent);
                 finish();
 
@@ -106,6 +111,7 @@ public class GameStartActivity extends Activity {
 
         txtResult = (TextView) findViewById(R.id.start_text_sentence);
         startImageButton = (ImageButton) findViewById(R.id.start_btn_recode);
+         gameScore =new GameScore();
 
         handler = new RecognitionHandler(this);
         naverRecognizer = new NaverRecognizer(this, handler, CLIENT_ID);

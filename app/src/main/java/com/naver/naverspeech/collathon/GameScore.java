@@ -46,4 +46,8 @@ public class GameScore {
         double result=equalCount/totalLength;
         return (double)equalCount/(double)totalLength*100;
     }
+
+    public int calculateScore(int basicScore,int time,int match){
+        return (basicScore+time)*match;
+    }
 }
