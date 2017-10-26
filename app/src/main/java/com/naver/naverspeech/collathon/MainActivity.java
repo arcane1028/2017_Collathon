@@ -42,20 +42,15 @@ public class MainActivity extends AppCompatActivity {
                         switch (which)
 
                         {
-
                             case 0:
-
                                 intent.putExtra("TEXT", "간장공장");
                                 startActivity(intent);
                                 finish();
-
                                 break;
-
                             case 1:
                                 intent.putExtra("TEXT", "경찰청창살");
                                 startActivity(intent);
                                 finish();
-
                                 break;
 
                         }
