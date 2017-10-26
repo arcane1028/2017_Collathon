@@ -21,7 +21,7 @@ public class GameResultActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        resultTextView.setText(intent.getExtras().getString("RESULT"));
+        resultTextView.setText(Integer.toString(intent.getExtras().getInt("RESULT_SCORE")));
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,7 +29,6 @@ public class GameResultActivity extends AppCompatActivity {
                 Intent intent = new Intent(GameResultActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
-
             }
         });
     }
