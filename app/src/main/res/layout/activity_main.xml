@@ -12,27 +12,14 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="Select"/>
-    <Button
-        android:id="@+id/main_btn_random"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Random"
-        android:layout_below="@+id/main_btn_select"/>
-    <Button
-        android:id="@+id/main_btn_create"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Create"
-        android:layout_below="@+id/main_btn_random"/>
+
     <Button
         android:id="@+id/main_btn_My"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="My"
-        android:layout_below="@+id/main_btn_create"/>
+        android:layout_below="@+id/main_btn_select"/>
 
 </RelativeLayout>
 

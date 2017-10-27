@@ -20,8 +20,8 @@ import java.util.List;
 
 public class GameStartActivity extends Activity {
 
-	private static final String TAG = GameStartActivity.class.getSimpleName();
-	private static final String CLIENT_ID = "_m0FWGMNhjAj1tSSzEEl";
+    private static final String TAG = GameStartActivity.class.getSimpleName();
+    private static final String CLIENT_ID = "_m0FWGMNhjAj1tSSzEEl";
     // 1. "내 애플리케이션"에서 Client ID를 확인해서 이곳에 적어주세요.
     // 2. build.gradle (Module:app)에서 패키지명을 실제 개발자센터 애플리케이션 설정의 '안드로이드 앱 패키지 이름'으로 바꿔 주세요
 
@@ -34,6 +34,7 @@ public class GameStartActivity extends Activity {
 
     private AudioWriterPCM writer;
     private GameScore gameScore;
+
     // Handle speech recognition Messages.
     private void handleMessage(Message msg) {
         switch (msg.what) {
@@ -58,10 +59,10 @@ public class GameStartActivity extends Activity {
             case R.id.finalResult:
                 // Extract obj property typed with String array.
                 // The first element is recognition result for speech.
-            	SpeechRecognitionResult speechRecognitionResult = (SpeechRecognitionResult) msg.obj;
+                SpeechRecognitionResult speechRecognitionResult = (SpeechRecognitionResult) msg.obj;
                 //TODO 결과 받기
-            	List<String> results = speechRecognitionResult.getResults();
-            	/*
+                List<String> results = speechRecognitionResult.getResults();
+                /*
                 StringBuilder strBuf = new StringBuilder();
             	for(String result : results) {
             		strBuf.append(result);
@@ -72,11 +73,15 @@ public class GameStartActivity extends Activity {
                 */
 
                 Intent intent = new Intent(GameStartActivity.this, GameResultActivity.class);
+
+                //TODO 살리기
+                /*
                 intent.putExtra("RESULT", results.get(0));
-                double resultScore = gameScore.parseSentence(results.get(0),getIntent().getExtras().getString("TEXT"));
+                double resultScore = gameScore.parseSentence(results.get(0), getIntent().getExtras().getString("TEXT"));
                 //디버깅을 위한 함수로서 나중에 Log로 바꿀것
-                Toast.makeText(this,results.get(0)+"\n"+getIntent().getExtras().getString("TEXT"),Toast.LENGTH_LONG).show();
-                intent.putExtra("RESULT_SCORE",gameScore.calculateScore(100,0,(int)resultScore));
+                Toast.makeText(this, results.get(0) + "\n" + getIntent().getExtras().getString("TEXT"), Toast.LENGTH_LONG).show();
+                intent.putExtra("RESULT_SCORE", gameScore.calculateScore(100, 0, (int) resultScore));
+                */
                 startActivity(intent);
                 finish();
 
@@ -111,23 +116,24 @@ public class GameStartActivity extends Activity {
 
         txtResult = (TextView) findViewById(R.id.start_text_sentence);
         startImageButton = (ImageButton) findViewById(R.id.start_btn_recode);
-         gameScore =new GameScore();
+        gameScore = new GameScore();
 
         handler = new RecognitionHandler(this);
         naverRecognizer = new NaverRecognizer(this, handler, CLIENT_ID);
-        txtResult.setText(getIntent().getExtras().getString("TEXT"));
+        //txtResult.setText(getIntent().getExtras().getString("TEXT"));
 
 
         startImageButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                if(!naverRecognizer.getSpeechRecognizer().isRunning()) {
+                if (!naverRecognizer.getSpeechRecognizer().isRunning()) {
                     // Start button is pushed when SpeechRecognizer's state is inactive.
                     // Run SpeechRecongizer by calling recognize().
                     mResult = "";
                     //txtResult.setText("Connecting...");
                     //startImageButton.setText(R.string.str_stop);
+                    startImageButton.setEnabled(false);
                     naverRecognizer.recognize();
                 } else {
                     Log.d(TAG, "stop and wait Final Result");
@@ -141,9 +147,9 @@ public class GameStartActivity extends Activity {
 
     @Override
     protected void onStart() {
-    	super.onStart();
-    	// NOTE : initialize() must be called on start time.
-    	naverRecognizer.getSpeechRecognizer().initialize();
+        super.onStart();
+        // NOTE : initialize() must be called on start time.
+        naverRecognizer.getSpeechRecognizer().initialize();
     }
 
     @Override
@@ -158,9 +164,9 @@ public class GameStartActivity extends Activity {
 
     @Override
     protected void onStop() {
-    	super.onStop();
-    	// NOTE : release() must be called on stop time.
-    	naverRecognizer.getSpeechRecognizer().release();
+        super.onStop();
+        // NOTE : release() must be called on stop time.
+        naverRecognizer.getSpeechRecognizer().release();
     }
 
     // Declare handler for handling SpeechRecognizer thread's Messages.
