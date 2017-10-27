@@ -21,13 +21,12 @@ public class GameResultActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        resultTextView.setText(Integer.toString(intent.getExtras().getInt("RESULT_SCORE")));
+        //resultTextView.setText(Integer.toString(intent.getExtras().getInt("RESULT_SCORE")));
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(GameResultActivity.this, MainActivity.class);
-                startActivity(intent);
+
                 finish();
             }
         });

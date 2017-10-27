@@ -1,25 +1,23 @@
 package com.naver.naverspeech.collathon;
 
-import android.content.DialogInterface;
+import android.Manifest;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
     Button selectButton;
-    Button randomButton;
-    Button createButton;
     Button myButton;
     static FirebaseDatabase database = FirebaseDatabase.getInstance();
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,59 +25,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         selectButton = (Button) findViewById(R.id.main_btn_select);
-        randomButton = (Button) findViewById(R.id.main_btn_random);
-        createButton = (Button) findViewById(R.id.main_btn_create);
         myButton = (Button) findViewById(R.id.main_btn_My);
 
         selectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                CharSequence info[] = new CharSequence[]{"간장공장", "경찰청창살"};
-
-                builder.setTitle("제목");
-
-                builder.setItems(info, new DialogInterface.OnClickListener() {
-
-                    @Override
-
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(MainActivity.this, GameStartActivity.class);
-                        switch (which)
-
-                        {
-                            case 0:
-                                intent.putExtra("TEXT", "간장공장");
-                                startActivity(intent);
-                                break;
-                            case 1:
-                                intent.putExtra("TEXT", "경찰청창살");
-                                startActivity(intent);
-                                break;
-
-                        }
-
-                        dialog.dismiss();
-
-                    }
-
-                });
-
-                builder.show();
-
-            }
-        });
-
-
-        randomButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, GameStartActivity.class);
-                intent.putExtra("TEXT", "간장공장");
+                Intent intent = new Intent(MainActivity.this, GameListActivity.class);
                 startActivity(intent);
-
             }
         });
+
+        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO);
+        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
+
+        } else {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.RECORD_AUDIO)) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, 1);
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, 1);
+            }
+        }
+
 
     }
 }

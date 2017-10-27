@@ -73,11 +73,15 @@ public class GameStartActivity extends Activity {
                 */
 
                 Intent intent = new Intent(GameStartActivity.this, GameResultActivity.class);
+
+                //TODO 살리기
+                /*
                 intent.putExtra("RESULT", results.get(0));
                 double resultScore = gameScore.parseSentence(results.get(0), getIntent().getExtras().getString("TEXT"));
                 //디버깅을 위한 함수로서 나중에 Log로 바꿀것
                 Toast.makeText(this, results.get(0) + "\n" + getIntent().getExtras().getString("TEXT"), Toast.LENGTH_LONG).show();
                 intent.putExtra("RESULT_SCORE", gameScore.calculateScore(100, 0, (int) resultScore));
+                */
                 startActivity(intent);
                 finish();
 
@@ -116,7 +120,7 @@ public class GameStartActivity extends Activity {
 
         handler = new RecognitionHandler(this);
         naverRecognizer = new NaverRecognizer(this, handler, CLIENT_ID);
-        txtResult.setText(getIntent().getExtras().getString("TEXT"));
+        //txtResult.setText(getIntent().getExtras().getString("TEXT"));
 
 
         startImageButton.setOnClickListener(new View.OnClickListener() {
