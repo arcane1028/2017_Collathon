@@ -9,6 +9,11 @@ public class PhraseItem {
     private String phrase;
     private int time;
 
+    public PhraseItem(String phrase, int time){
+        this.phrase = phrase;
+        this.time = time;
+    }
+
     public String getPhrase() {
         return phrase;
     }

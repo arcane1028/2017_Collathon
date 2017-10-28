@@ -16,6 +16,7 @@ public class GameListActivity extends AppCompatActivity {
     private Button select;
     private Button random;
     private ListView phraseList;
+    private PhraseAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,16 +24,20 @@ public class GameListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gamelist);
 
         phraseList = (ListView) findViewById(R.id.phraseListView);
-        create = (Button)findViewById(R.id.createButton);
-        select = (Button)findViewById(R.id.selectButton);
-        random = (Button)findViewById(R.id.randomButton);
+        create = (Button) findViewById(R.id.createButton);
+        select = (Button) findViewById(R.id.selectButton);
+        random = (Button) findViewById(R.id.randomButton);
 
         //TODO 리스트 생성 FireBase
-        /*
-            adapter = new SingerAdapter();
-            adapter.addItem(new SingerItem("소녀시대", "010-1000-1000", 2007, R.drawable.girlsgeneration));
-            listView.setAdapter(adapter);
-         */
+        adapter = new PhraseAdapter();
+        adapter.addItem(new PhraseItem("소녀시대", 10));
+        adapter.addItem(new PhraseItem("간장공장장", 10));
+        adapter.addItem(new PhraseItem("결창철창살", 10));
+        adapter.addItem(new PhraseItem("목긴기린", 10));
+        adapter.addItem(new PhraseItem("아야어요", 10));
+
+        phraseList.setAdapter(adapter);
+
 
         create.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,11 +59,11 @@ public class GameListActivity extends AppCompatActivity {
                 //TODO 랜덤 기능
                 Intent intent = new Intent(GameListActivity.this, GameStartActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
 
     }
+
     private class PhraseAdapter extends BaseAdapter {
         ArrayList<PhraseItem> items = new ArrayList<PhraseItem>();
 
@@ -67,7 +72,9 @@ public class GameListActivity extends AppCompatActivity {
             return items.size();
         }
 
-        public void addItem(PhraseItem item){ items.add(item);}
+        public void addItem(PhraseItem item) {
+            items.add(item);
+        }
 
         @Override
         public Object getItem(int position) {

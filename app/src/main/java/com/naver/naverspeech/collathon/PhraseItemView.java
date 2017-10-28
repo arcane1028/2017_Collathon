@@ -32,5 +32,5 @@ public class PhraseItemView extends LinearLayout{
         phraseTimeView = (TextView)findViewById(R.id.phraseTime);
     }
     public void setPhrase(String phrase){ phraseView.setText(phrase);}
-    public void setPhraseTime(int phraseTime){ phraseTimeView.setText(phraseTime);}
+    public void setPhraseTime(int phraseTime){ phraseTimeView.setText(Integer.toString(phraseTime));}
 }
