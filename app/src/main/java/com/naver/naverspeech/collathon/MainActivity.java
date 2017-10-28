@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        // 권한 요청
         int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO);
         if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
 

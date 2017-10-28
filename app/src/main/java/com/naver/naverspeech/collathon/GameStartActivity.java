@@ -51,12 +51,14 @@ public class GameStartActivity extends Activity {
                 break;
 
             case R.id.partialResult:
+                //TODO 임시 결과
                 // Extract obj property typed with String.
                 mResult = (String) (msg.obj);
                 //txtResult.setText(mResult);
                 break;
 
             case R.id.finalResult:
+                //TODO 결과 다 받은 경우
                 // Extract obj property typed with String array.
                 // The first element is recognition result for speech.
                 SpeechRecognitionResult speechRecognitionResult = (SpeechRecognitionResult) msg.obj;

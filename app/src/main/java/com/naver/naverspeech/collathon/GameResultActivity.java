@@ -20,7 +20,7 @@ public class GameResultActivity extends AppCompatActivity {
         TextView resultTextView = (TextView)findViewById(R.id.result_text_score);
 
         Intent intent = getIntent();
-
+        //TODO 결과 보이기
         //resultTextView.setText(Integer.toString(intent.getExtras().getInt("RESULT_SCORE")));
 
         button.setOnClickListener(new View.OnClickListener() {

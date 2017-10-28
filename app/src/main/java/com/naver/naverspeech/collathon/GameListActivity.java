@@ -30,7 +30,6 @@ public class GameListActivity extends AppCompatActivity {
 
         //TODO 리스트 생성 FireBase
         adapter = new PhraseAdapter();
-        adapter.addItem(new PhraseItem("소녀시대", 10));
         adapter.addItem(new PhraseItem("간장공장장", 10));
         adapter.addItem(new PhraseItem("결창철창살", 10));
         adapter.addItem(new PhraseItem("목긴기린", 10));
@@ -61,6 +60,8 @@ public class GameListActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //TODO 버튼 클릭시 등수 보여지게
 
     }
 
