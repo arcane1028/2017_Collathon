@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.naver.naverspeech.collathon">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -21,7 +22,11 @@
         </activity>
         <activity android:name=".GameResultActivity" />
         <activity android:name=".GameStartActivity" />
-        <activity android:name=".GameListActivity"></activity>
+        <activity android:name=".GameListActivity" />
+        <activity android:name=".CreateSentence"
+            android:theme="@style/Theme.AppCompat.Dialog">
+
+        </activity>
     </application>
 
 </manifest>
