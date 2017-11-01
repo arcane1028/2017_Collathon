@@ -7,9 +7,9 @@ package com.naver.naverspeech.collathon;
 public class PhraseItem {
 
     private String phrase;
-    private int time;
+    private String time;
 
-    public PhraseItem(String phrase, int time){
+    public PhraseItem(){
         this.phrase = phrase;
         this.time = time;
     }
@@ -22,11 +22,11 @@ public class PhraseItem {
         this.phrase = phrase;
     }
 
-    public int getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(int time) {
+    public void setTime(String time) {
         this.time = time;
     }
 }

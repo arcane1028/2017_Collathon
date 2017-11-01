@@ -23,10 +23,6 @@
         <activity android:name=".GameResultActivity" />
         <activity android:name=".GameStartActivity" />
         <activity android:name=".GameListActivity" />
-        <activity android:name=".CreateSentence"
-            android:theme="@style/Theme.AppCompat.Dialog">
-
-        </activity>
     </application>
 
 </manifest>
