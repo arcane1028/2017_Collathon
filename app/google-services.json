@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "841095134913",
+    "firebase_url": "https://collathon-d9796.firebaseio.com",
+    "project_id": "collathon-d9796",
+    "storage_bucket": "collathon-d9796.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:841095134913:android:fdbd13a6483568a4",
+        "android_client_info": {
+          "package_name": "com.naver.naverspeech.collathon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "841095134913-cflhkd8ed22en5cgl66cifuj7ic6j36s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.naver.naverspeech.collathon",
+            "certificate_hash": "eb022b2aeabf8a39387e35fdca0b45df953c5488"
+          }
+        },
+        {
+          "client_id": "841095134913-r3aejndas64pjoeklfme6a0obldb5t2p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.naver.naverspeech.collathon",
+            "certificate_hash": "3747a55191a01ba1c884a89853d58590a8e65dea"
+          }
+        },
+        {
+          "client_id": "841095134913-9fnmjc67pf9ft0htr3h2fvctao6607ak.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqUQSyV8N86hLfEdvUkZizPEnInLysqCE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "841095134913-9fnmjc67pf9ft0htr3h2fvctao6607ak.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
