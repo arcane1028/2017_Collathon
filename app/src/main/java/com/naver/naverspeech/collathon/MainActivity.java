@@ -12,14 +12,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
-
+    static FirebaseDatabase database = FirebaseDatabase.getInstance();
     Button selectButton;
     Button randomButton;
     Button createButton;
     Button myButton;
-    static FirebaseDatabase database = FirebaseDatabase.getInstance();
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +27,17 @@ public class MainActivity extends AppCompatActivity {
         randomButton = (Button) findViewById(R.id.main_btn_random);
         createButton = (Button) findViewById(R.id.main_btn_create);
         myButton = (Button) findViewById(R.id.main_btn_My);
+
+
+        DatabaseReference myRef = database.getReference("hello");
+        myRef.setValue("Hello, YDH!");
+
+        createButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         selectButton.setOnClickListener(new View.OnClickListener() {
             @Override
