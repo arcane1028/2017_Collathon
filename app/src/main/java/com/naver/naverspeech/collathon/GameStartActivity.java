@@ -122,7 +122,7 @@ public class GameStartActivity extends Activity {
 
         handler = new RecognitionHandler(this);
         naverRecognizer = new NaverRecognizer(this, handler, CLIENT_ID);
-        //txtResult.setText(getIntent().getExtras().getString("TEXT"));
+        txtResult.setText(getIntent().getExtras().getString("PHRASE"));
 
 
         startImageButton.setOnClickListener(new View.OnClickListener() {
