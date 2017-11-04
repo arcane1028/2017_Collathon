@@ -4,15 +4,20 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.List;
 
 public class GameListActivity extends AppCompatActivity {
     private Button create;
@@ -22,7 +27,7 @@ public class GameListActivity extends AppCompatActivity {
 
     DatabaseReference db;
     FirebaseHelper helper;
-    PhraseItemView adapter;
+    PhraseItemAdapter adapter;
     ListView listView;
     EditText phraseEditTxt, timeEditTxt;
     Button add;
@@ -49,17 +54,24 @@ public class GameListActivity extends AppCompatActivity {
         helper = new FirebaseHelper(db);
 
         //ADAPTER
-        adapter = new PhraseItemView(this, helper.retrieve());
+        adapter = new PhraseItemAdapter(this, helper.retrieve());
         phraseList.setAdapter(adapter);
 
         phraseList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 PhraseItem phraseItem = (PhraseItem) adapterView.getAdapter().getItem(position);
-
                 activityIntent.putExtra("PHRASE", phraseItem.getPhrase());
                 activityIntent.putExtra("TIME", phraseItem.getTime());
 
+
+                List<String> rankList = phraseItem.getRank();
+                View rank = adapterView.getAdapter().getView(position,
+                        LayoutInflater.from(GameListActivity.this).inflate(R.layout.phrase_item,phraseList,false),
+                        phraseList);
+                rank.findViewById(R.id.rankList).setVisibility(View.VISIBLE);
+
+                adapter.notifyDataSetChanged();
             }
         });
 
@@ -126,7 +138,7 @@ public class GameListActivity extends AppCompatActivity {
 
                         Toast.makeText(GameListActivity.this, "\"" + phrase + "\"" + " 문장이 추가 되었습니다", Toast.LENGTH_SHORT).show();
 
-                        adapter = new PhraseItemView(GameListActivity.this, helper.retrieve());
+                        adapter = new PhraseItemAdapter(GameListActivity.this, helper.retrieve());
                         phraseList.setAdapter(adapter);
                     }
                 } else {
