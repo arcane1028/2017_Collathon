@@ -62,10 +62,10 @@ public class PhraseItem {
         rank.remove(2);
         rank.add(String.format("%-10s %10d",input_name,input_score));
 
-        int score=Integer.valueOf(rank.get(1).substring(11,21));
+        int score=Integer.valueOf(rank.get(1).substring(11,21).replaceAll(" ", ""));
         if(score<input_score) {
             Collections.swap(rank, 1, 2);
-            score=Integer.valueOf(rank.get(0).substring(11,21));
+            score=Integer.valueOf(rank.get(0).substring(11,21).replaceAll(" ", ""));
             if(score<input_score)
                 Collections.swap(rank, 0, 1);
         }
