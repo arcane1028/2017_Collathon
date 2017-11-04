@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -35,8 +36,9 @@ public class GameStartActivity extends Activity {
     private AudioWriterPCM writer;
     private GameScore gameScore;
 
-    private int start_time;
-    private int end_time;
+    private long start_time;
+    private long end_time;
+    private int goal_time;
 
     // Handle speech recognition Messages.
     private void handleMessage(Message msg) {
@@ -65,6 +67,7 @@ public class GameStartActivity extends Activity {
                 // Extract obj property typed with String array.
                 // The first element is recognition result for speech.
                 SpeechRecognitionResult speechRecognitionResult = (SpeechRecognitionResult) msg.obj;
+                end_time = SystemClock.currentThreadTimeMillis();
                 //TODO 결과 받기
                 List<String> results = speechRecognitionResult.getResults();
                 /*
@@ -80,13 +83,15 @@ public class GameStartActivity extends Activity {
                 Intent intent = new Intent(GameStartActivity.this, GameResultActivity.class);
 
                 //TODO 살리기
-                /*
                 intent.putExtra("RESULT", results.get(0));
-                double resultScore = gameScore.parseSentence(results.get(0), getIntent().getExtras().getString("TEXT"));
+                double resultScore = gameScore.parseSentence( txtResult.getText().toString(), results.get(0));
                 //디버깅을 위한 함수로서 나중에 Log로 바꿀것
-                Toast.makeText(this, results.get(0) + "\n" + getIntent().getExtras().getString("TEXT"), Toast.LENGTH_LONG).show();
-                intent.putExtra("RESULT_SCORE", gameScore.calculateScore(100, 0, (int) resultScore));
-                */
+                //Toast.makeText(this, results.get(0) + "\n" + getIntent().getExtras().getString("TEXT"), Toast.LENGTH_LONG).show();
+
+                int result_time = Integer.valueOf(Long.toString(end_time-start_time));
+
+                intent.putExtra("RESULT_SCORE", gameScore.calculateScore(100, goal_time-result_time, (int) resultScore));
+                intent.putExtra("RESULT_PHRASE", txtResult.getText().toString());
                 startActivity(intent);
                 finish();
 
@@ -126,7 +131,9 @@ public class GameStartActivity extends Activity {
         handler = new RecognitionHandler(this);
         naverRecognizer = new NaverRecognizer(this, handler, CLIENT_ID);
         txtResult.setText(getIntent().getExtras().getString("PHRASE"));
+        goal_time = Integer.valueOf(String.valueOf(getIntent().getExtras().get("TIME")));
 
+        Log.d("TEST TIME", " "+goal_time);
 
         startImageButton.setOnClickListener(new View.OnClickListener() {
 
@@ -154,6 +161,8 @@ public class GameStartActivity extends Activity {
     protected void onStart() {
         super.onStart();
         // NOTE : initialize() must be called on start time.
+
+        start_time = SystemClock.currentThreadTimeMillis();
         naverRecognizer.getSpeechRecognizer().initialize();
     }
 
