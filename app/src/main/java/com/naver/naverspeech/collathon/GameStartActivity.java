@@ -35,6 +35,9 @@ public class GameStartActivity extends Activity {
     private AudioWriterPCM writer;
     private GameScore gameScore;
 
+    private int start_time;
+    private int end_time;
+
     // Handle speech recognition Messages.
     private void handleMessage(Message msg) {
         switch (msg.what) {

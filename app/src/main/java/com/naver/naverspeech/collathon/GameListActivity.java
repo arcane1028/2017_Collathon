@@ -26,6 +26,7 @@ public class GameListActivity extends AppCompatActivity {
     EditText phraseEditTxt, timeEditTxt;
     Button add;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,9 +97,7 @@ public class GameListActivity extends AppCompatActivity {
                 String time = timeEditTxt.getText().toString();
 
                 //SET DATA
-                PhraseItem s = new PhraseItem();
-                s.setPhrase(phrase);
-                s.setTime(time+"sec");
+                PhraseItem s = new PhraseItem(phrase,time);
 
                 //SIMPLE VALIDATION
                 if (phrase != null && phrase.length() > 0 && time != null && time.length() > 0) {
@@ -114,16 +113,12 @@ public class GameListActivity extends AppCompatActivity {
 
                         adapter = new PhraseItemView(GameListActivity.this, helper.retrieve());
                         phraseList.setAdapter(adapter);
-
-
                     }
                 } else {
                     Toast.makeText(GameListActivity.this, "추가하실 문장 및 제한시간이 입력됬는지 확인해주세요", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
-
         d.show();
     }
 }
