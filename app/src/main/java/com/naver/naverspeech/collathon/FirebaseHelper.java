@@ -50,16 +50,17 @@ public class FirebaseHelper {
         }
     }
 
-    //RETRIEVE
-    public ArrayList<PhraseItem> retrieve() {
+    public void retrieve(final PhraseItemAdapter adapter) {
         db.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 fetchData(dataSnapshot);
+                adapter.setPhraseItems(phraseItems);
             }
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                 fetchData(dataSnapshot);
+                adapter.setPhraseItems(phraseItems);
             }
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
@@ -73,6 +74,5 @@ public class FirebaseHelper {
 
             }
         });
-        return phraseItems;
     }
 }
