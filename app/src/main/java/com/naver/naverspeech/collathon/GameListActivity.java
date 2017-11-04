@@ -17,6 +17,8 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class GameListActivity extends AppCompatActivity {
@@ -62,12 +64,7 @@ public class GameListActivity extends AppCompatActivity {
                 PhraseItem phraseItem = (PhraseItem) adapterView.getAdapter().getItem(position);
                 activityIntent.putExtra("PHRASE", phraseItem.getPhrase());
                 activityIntent.putExtra("TIME", phraseItem.getTime());
-
-                View rank = adapterView.getAdapter().getView(position,
-                        LayoutInflater.from(GameListActivity.this).inflate(R.layout.phrase_item,phraseList,false),
-                        phraseList);
-                rank.findViewById(R.id.rankList).setVisibility(View.VISIBLE);
-
+                view.findViewById(R.id.rankList).setVisibility(View.VISIBLE);
                 adapter.notifyDataSetChanged();
             }
         });
