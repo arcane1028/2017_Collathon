@@ -54,12 +54,14 @@ public class PhraseItemView extends BaseAdapter{
         timeTxt.setText(s.getTime());
 
         //ONITECLICK
+        /*
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(c,s.getPhrase(),Toast.LENGTH_SHORT).show();
             }
         });
+         */
         return convertView;
     }
 }
