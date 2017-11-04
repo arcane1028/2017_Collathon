@@ -32,7 +32,6 @@ public class GameListActivity extends AppCompatActivity {
     EditText phraseEditTxt, timeEditTxt;
     Button add;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,10 +51,10 @@ public class GameListActivity extends AppCompatActivity {
         //파이어베이스 DB 초기화
         db = FirebaseDatabase.getInstance().getReference();
         helper = new FirebaseHelper(db);
-
         //ADAPTER
-        adapter = new PhraseItemAdapter(this, helper.retrieve());
+        adapter = new PhraseItemAdapter(this );
         phraseList.setAdapter(adapter);
+        helper.retrieve(adapter);
 
         phraseList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -64,8 +63,6 @@ public class GameListActivity extends AppCompatActivity {
                 activityIntent.putExtra("PHRASE", phraseItem.getPhrase());
                 activityIntent.putExtra("TIME", phraseItem.getTime());
 
-
-                List<String> rankList = phraseItem.getRank();
                 View rank = adapterView.getAdapter().getView(position,
                         LayoutInflater.from(GameListActivity.this).inflate(R.layout.phrase_item,phraseList,false),
                         phraseList);
@@ -138,8 +135,9 @@ public class GameListActivity extends AppCompatActivity {
 
                         Toast.makeText(GameListActivity.this, "\"" + phrase + "\"" + " 문장이 추가 되었습니다", Toast.LENGTH_SHORT).show();
 
-                        adapter = new PhraseItemAdapter(GameListActivity.this, helper.retrieve());
+                        adapter = new PhraseItemAdapter(GameListActivity.this);
                         phraseList.setAdapter(adapter);
+                        helper.retrieve(adapter);
                     }
                 } else {
                     Toast.makeText(GameListActivity.this, "추가하실 문장 및 제한시간이 입력됬는지 확인해주세요", Toast.LENGTH_SHORT).show();

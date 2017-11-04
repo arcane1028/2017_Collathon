@@ -1,6 +1,7 @@
 package com.naver.naverspeech.collathon;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,12 @@ import java.util.ArrayList;
 public class PhraseItemAdapter extends BaseAdapter{
     Context c;
     ArrayList<PhraseItem> PhraseItems;
+
+    public PhraseItemAdapter(Context c) {
+        this.c = c;
+        this.PhraseItems = new ArrayList<>();
+    }
+
 
     public PhraseItemAdapter(Context c, ArrayList<PhraseItem> PhraseItems) {
         this.c = c;
@@ -54,8 +61,12 @@ public class PhraseItemAdapter extends BaseAdapter{
         phraseTxt.setText(s.getPhrase());
         timeTxt.setText(s.getTime());
         rankListView.setText("");
-        for (int i=0;i<PhraseItems.size();i++){
-            rankListView.setText(rankListView.getText()+"\n"+PhraseItems.get(i));
+        for (int i=0;i<s.getRank().size();i++){
+            if (s.getRank().get(i).isEmpty()) {
+            }else {
+                String ss = rankListView.getText().toString() + "\n" + s.getRank().get(i);
+                rankListView.setText(ss);
+            }
         }
         //ONITECLICK
         /*
@@ -67,5 +78,10 @@ public class PhraseItemAdapter extends BaseAdapter{
         });
          */
         return convertView;
+    }
+
+    public void setPhraseItems(ArrayList<PhraseItem> phraseItems) {
+        PhraseItems = phraseItems;
+        notifyDataSetChanged();
     }
 }
