@@ -14,11 +14,11 @@ import java.util.ArrayList;
  * Created by JSH on 2017-10-27.
  */
 
-public class PhraseItemView extends BaseAdapter{
+public class PhraseItemAdapter extends BaseAdapter{
     Context c;
     ArrayList<PhraseItem> PhraseItems;
 
-    public PhraseItemView(Context c, ArrayList<PhraseItem> PhraseItems) {
+    public PhraseItemAdapter(Context c, ArrayList<PhraseItem> PhraseItems) {
         this.c = c;
         this.PhraseItems = PhraseItems;
     }
@@ -47,12 +47,16 @@ public class PhraseItemView extends BaseAdapter{
 
         TextView phraseTxt= (TextView) convertView.findViewById(R.id.phrase);
         TextView timeTxt= (TextView) convertView.findViewById(R.id.phraseTime);
+        TextView rankListView = (TextView)convertView.findViewById(R.id.rankList);
 
         final PhraseItem s= (PhraseItem) this.getItem(position);
 
         phraseTxt.setText(s.getPhrase());
         timeTxt.setText(s.getTime());
-
+        rankListView.setText("");
+        for (int i=0;i<PhraseItems.size();i++){
+            rankListView.setText(rankListView.getText()+"\n"+PhraseItems.get(i));
+        }
         //ONITECLICK
         /*
         convertView.setOnClickListener(new View.OnClickListener() {
