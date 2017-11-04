@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -33,22 +34,33 @@ public class GameListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gamelist);
 
         phraseList = (ListView) findViewById(R.id.phraseListView);
-        create = (Button)findViewById(R.id.createButton);
-        select = (Button)findViewById(R.id.selectButton);
-        random = (Button)findViewById(R.id.randomButton);
+        create = (Button) findViewById(R.id.createButton);
+        select = (Button) findViewById(R.id.selectButton);
+        random = (Button) findViewById(R.id.randomButton);
         add = (Button) findViewById(R.id.add_btn);
         phraseEditTxt = (EditText) findViewById(R.id.add_phrase);
         timeEditTxt = (EditText) findViewById(R.id.add_time);
         add = (Button) findViewById(R.id.add_btn);
-
+        final Intent activityIntent = new Intent(GameListActivity.this, GameStartActivity.class);
 
         //파이어베이스 DB 초기화
-       db = FirebaseDatabase.getInstance().getReference();
-       helper = new FirebaseHelper(db);
+        db = FirebaseDatabase.getInstance().getReference();
+        helper = new FirebaseHelper(db);
 
-       //ADAPTER
-        adapter = new PhraseItemView(this,helper.retrieve());
+        //ADAPTER
+        adapter = new PhraseItemView(this, helper.retrieve());
         phraseList.setAdapter(adapter);
+
+        phraseList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                PhraseItem phraseItem = (PhraseItem) adapterView.getAdapter().getItem(position);
+
+                activityIntent.putExtra("PHRASE", phraseItem.getPhrase());
+                activityIntent.putExtra("TIME", phraseItem.getTime());
+
+            }
+        });
 
         create.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +75,8 @@ public class GameListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // TODO 선택 기능
+                startActivity(activityIntent);
+                finish();
             }
         });
 
@@ -99,6 +113,7 @@ public class GameListActivity extends AppCompatActivity {
                 //SET DATA
                 PhraseItem s = new PhraseItem(phrase,time);
 
+
                 //SIMPLE VALIDATION
                 if (phrase != null && phrase.length() > 0 && time != null && time.length() > 0) {
                     //THEN SAVE
@@ -109,7 +124,7 @@ public class GameListActivity extends AppCompatActivity {
 
                         d.dismiss();
 
-                        Toast.makeText(GameListActivity.this, "\""+phrase +"\""+ " 문장이 추가 되었습니다", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(GameListActivity.this, "\"" + phrase + "\"" + " 문장이 추가 되었습니다", Toast.LENGTH_SHORT).show();
 
                         adapter = new PhraseItemView(GameListActivity.this, helper.retrieve());
                         phraseList.setAdapter(adapter);
