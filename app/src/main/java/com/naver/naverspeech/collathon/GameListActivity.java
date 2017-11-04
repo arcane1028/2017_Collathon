@@ -27,13 +27,13 @@ public class GameListActivity extends AppCompatActivity {
     private Button random;
     private ListView phraseList;
 
-    DatabaseReference db;
-    FirebaseHelper helper;
+    static DatabaseReference db;
+    static FirebaseHelper helper;
     PhraseItemAdapter adapter;
     ListView listView;
     EditText phraseEditTxt, timeEditTxt;
     Button add;
-
+    View selectView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +64,10 @@ public class GameListActivity extends AppCompatActivity {
                 PhraseItem phraseItem = (PhraseItem) adapterView.getAdapter().getItem(position);
                 activityIntent.putExtra("PHRASE", phraseItem.getPhrase());
                 activityIntent.putExtra("TIME", phraseItem.getTime());
-                view.findViewById(R.id.rankList).setVisibility(View.VISIBLE);
+                if(selectView!=null)
+                    selectView.setVisibility(View.GONE);
+                selectView = view.findViewById(R.id.rankList);
+                selectView.setVisibility(View.VISIBLE);
                 adapter.notifyDataSetChanged();
             }
         });
@@ -83,7 +86,6 @@ public class GameListActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // TODO 선택 기능
                 startActivity(activityIntent);
-                finish();
             }
         });
 
@@ -93,7 +95,6 @@ public class GameListActivity extends AppCompatActivity {
                 //TODO 랜덤 기능
                 Intent intent = new Intent(GameListActivity.this, GameStartActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
 
