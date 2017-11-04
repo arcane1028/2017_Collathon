@@ -32,6 +32,7 @@ public class GameListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gamelist);
+        final Intent activityIntent = new Intent(GameListActivity.this, GameStartActivity.class);
 
         phraseList = (ListView) findViewById(R.id.phraseListView);
         create = (Button) findViewById(R.id.createButton);
@@ -41,7 +42,7 @@ public class GameListActivity extends AppCompatActivity {
         phraseEditTxt = (EditText) findViewById(R.id.add_phrase);
         timeEditTxt = (EditText) findViewById(R.id.add_time);
         add = (Button) findViewById(R.id.add_btn);
-        final Intent activityIntent = new Intent(GameListActivity.this, GameStartActivity.class);
+
 
         //파이어베이스 DB 초기화
         db = FirebaseDatabase.getInstance().getReference();
@@ -112,7 +113,6 @@ public class GameListActivity extends AppCompatActivity {
 
                 //SET DATA
                 PhraseItem s = new PhraseItem(phrase,time);
-
 
                 //SIMPLE VALIDATION
                 if (phrase != null && phrase.length() > 0 && time != null && time.length() > 0) {
