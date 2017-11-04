@@ -27,7 +27,9 @@ public class GameResultActivity extends AppCompatActivity {
         Intent intent = getIntent();
         //TODO 결과 보이기
         resultTextView.setText(Integer.toString(intent.getExtras().getInt("RESULT_SCORE")));
+
         Log.d("TEST PHRASE", intent.getExtras().get("RESULT_PHRASE").toString());
+
         if(true){
             AlertDialog.Builder rank_dialog= new AlertDialog.Builder(this);
             rank_dialog.setTitle("이름을 입력하세요.");
