@@ -1,5 +1,7 @@
 package com.naver.naverspeech.collathon;
 
+import android.util.Log;
+
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -46,6 +48,8 @@ public class FirebaseHelper {
         phraseItems.clear();
         for (DataSnapshot ds : dataSnapshot.getChildren()) {
             PhraseItem phraseItem = ds.getValue(PhraseItem.class);
+            //TODO 키받아 오는거
+            Log.d("KEY TEST", ds.getKey());
             phraseItems.add(phraseItem);
         }
     }
