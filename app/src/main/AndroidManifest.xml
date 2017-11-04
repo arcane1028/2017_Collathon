@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.naver.naverspeech.collathon">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -19,9 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GameResultActivity"/>
+        <activity android:name=".GameResultActivity" />
         <activity android:name=".GameStartActivity" />
-
+        <activity android:name=".GameListActivity" />
     </application>
 
 </manifest>
