@@ -43,7 +43,6 @@ public class GameScore {
         }
         System.out.println(totalLength);
         System.out.println(equalCount);
-        double result=equalCount/totalLength;
         return (double)equalCount/(double)totalLength*100;
     }
 

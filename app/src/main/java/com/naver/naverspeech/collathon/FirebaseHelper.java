@@ -33,20 +33,17 @@ public class FirebaseHelper {
             try {
                 db.child("List").push().setValue(phraseItem);
                 saved = true;
-
             } catch (DatabaseException e) {
                 e.printStackTrace();
                 saved = false;
             }
         }
-
         return saved;
     }
 
     //IMPLEMENT FETCH DATA AND FILL ARRAYLIST
     private void fetchData(DataSnapshot dataSnapshot) {
         phraseItems.clear();
-
         for (DataSnapshot ds : dataSnapshot.getChildren()) {
             PhraseItem phraseItem = ds.getValue(PhraseItem.class);
             phraseItems.add(phraseItem);
@@ -60,30 +57,22 @@ public class FirebaseHelper {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 fetchData(dataSnapshot);
             }
-
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                 fetchData(dataSnapshot);
-
             }
-
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
 
             }
-
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
-
-
         return phraseItems;
     }
 }
