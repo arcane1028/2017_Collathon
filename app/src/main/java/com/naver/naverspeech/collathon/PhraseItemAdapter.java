@@ -68,15 +68,6 @@ public class PhraseItemAdapter extends BaseAdapter{
                 rankListView.setText(ss);
             }
         }
-        //ONITECLICK
-        /*
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(c,s.getPhrase(),Toast.LENGTH_SHORT).show();
-            }
-        });
-         */
         return convertView;
     }
 

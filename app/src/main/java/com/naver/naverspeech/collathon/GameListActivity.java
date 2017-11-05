@@ -36,6 +36,7 @@ public class GameListActivity extends AppCompatActivity {
     EditText phraseEditTxt, timeEditTxt;
     Button add;
     View selectView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +57,7 @@ public class GameListActivity extends AppCompatActivity {
         db = FirebaseDatabase.getInstance().getReference();
         helper = new FirebaseHelper(db);
         //ADAPTER
-        adapter = new PhraseItemAdapter(this );
+        adapter = new PhraseItemAdapter(this);
         phraseList.setAdapter(adapter);
         helper.retrieve(adapter);
 
@@ -66,7 +67,8 @@ public class GameListActivity extends AppCompatActivity {
                 PhraseItem phraseItem = (PhraseItem) adapterView.getAdapter().getItem(position);
                 activityIntent.putExtra("PHRASE", phraseItem.getPhrase());
                 activityIntent.putExtra("TIME", phraseItem.getTime());
-                if(selectView!=null)
+                activityIntent.putExtra("DATA_KEY", phraseItem.getDataKey());
+                if (selectView != null)
                     selectView.setVisibility(View.GONE);
                 selectView = view.findViewById(R.id.rankList);
                 selectView.setVisibility(View.VISIBLE);
@@ -87,7 +89,7 @@ public class GameListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // TODO 선택 기능
-                if (selectView == null){
+                if (selectView == null) {
                     Toast.makeText(GameListActivity.this, "문장을 선택해 주세요", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -99,14 +101,14 @@ public class GameListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TODO 랜덤 기능
-                Intent intent = new Intent(GameListActivity.this, GameStartActivity.class);
                 Random random = new Random();
                 int randomPosition = random.nextInt(adapter.getCount());
-                Log.d("TEST RANDOM", randomPosition+"");
-                PhraseItem randomPhraseItem =(PhraseItem) adapter.getItem(randomPosition);
+                Log.d("TEST RANDOM", randomPosition + "");
+                PhraseItem randomPhraseItem = (PhraseItem) adapter.getItem(randomPosition);
 
-                activityIntent.putExtra("PHRASE",  randomPhraseItem.getPhrase());
-                activityIntent.putExtra("TIME",  randomPhraseItem.getTime());
+                activityIntent.putExtra("PHRASE", randomPhraseItem.getPhrase());
+                activityIntent.putExtra("TIME", randomPhraseItem.getTime());
+                activityIntent.putExtra("DATA_KEY", randomPhraseItem.getDataKey());
                 startActivity(activityIntent);
             }
         });
@@ -115,12 +117,12 @@ public class GameListActivity extends AppCompatActivity {
 
     //문장 추가 다이얼로그
     private void displayInputDialog() {
-        final Dialog d = new Dialog(this);
-        d.setContentView(R.layout.sentence_add_popup);
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.sentence_add_popup);
 
-        phraseEditTxt = (EditText) d.findViewById(R.id.add_phrase);
-        timeEditTxt = (EditText) d.findViewById(R.id.add_time);
-        add = (Button) d.findViewById(R.id.add_btn);
+        phraseEditTxt = (EditText) dialog.findViewById(R.id.add_phrase);
+        timeEditTxt = (EditText) dialog.findViewById(R.id.add_time);
+        add = (Button) dialog.findViewById(R.id.add_btn);
 
         //SAVE
         add.setOnClickListener(new View.OnClickListener() {
@@ -132,30 +134,34 @@ public class GameListActivity extends AppCompatActivity {
                 String time = timeEditTxt.getText().toString();
 
                 //SET DATA
-                PhraseItem s = new PhraseItem(phrase,time);
+                PhraseItem savePhraseItem = new PhraseItem(phrase, time);
 
                 //SIMPLE VALIDATION
                 if (phrase != null && phrase.length() > 0 && time != null && time.length() > 0) {
                     //THEN SAVE
-                    if (helper.save(s)) {
+                    if (helper.save(savePhraseItem)) {
                         //IF SAVED CLEAR EDITXT
                         phraseEditTxt.setText("");
                         timeEditTxt.setText("");
 
-                        d.dismiss();
+                        dialog.dismiss();
 
-                        Toast.makeText(GameListActivity.this, "\"" + phrase + "\"" + " 문장이 추가 되었습니다", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(GameListActivity.this,
+                                "\"" + phrase + "\"" + " 문장이 추가 되었습니다",
+                                Toast.LENGTH_SHORT).show();
 
                         adapter = new PhraseItemAdapter(GameListActivity.this);
                         phraseList.setAdapter(adapter);
                         helper.retrieve(adapter);
                     }
                 } else {
-                    Toast.makeText(GameListActivity.this, "추가하실 문장 및 제한시간이 입력됬는지 확인해주세요", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(GameListActivity.this,
+                            "추가하실 문장 및 제한시간이 입력됬는지 확인해주세요",
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        d.show();
+        dialog.show();
     }
 }
 
