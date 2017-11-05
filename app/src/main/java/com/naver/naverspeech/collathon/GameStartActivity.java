@@ -35,6 +35,7 @@ public class GameStartActivity extends Activity {
 
     private AudioWriterPCM writer;
     private GameScore gameScore;
+    private String dataKey;
 
     private long start_time;
     private long end_time;
@@ -75,7 +76,7 @@ public class GameStartActivity extends Activity {
 
                 intent.putExtra("RESULT_SCORE", gameScore.calculateScore(100, goal_time-result_time, (int) resultScore));
                 intent.putExtra("RESULT_PHRASE", txtResult.getText().toString());
-
+                intent.putExtra("DATA_KEY", dataKey);
                 startActivity(intent);
                 finish();
 
@@ -116,8 +117,7 @@ public class GameStartActivity extends Activity {
         naverRecognizer = new NaverRecognizer(this, handler, CLIENT_ID);
         txtResult.setText(getIntent().getExtras().getString("PHRASE"));
         goal_time = Integer.valueOf(String.valueOf(getIntent().getExtras().get("TIME")));
-
-        Log.d("TEST TIME", " "+goal_time);
+        dataKey = (String) getIntent().getExtras().get("DATA_KEY");
 
         startImageButton.setOnClickListener(new View.OnClickListener() {
 
