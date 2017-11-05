@@ -48,7 +48,8 @@
             android:id="@+id/add_btn"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="추가" />
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/button_event_add" />
     </LinearLayout>
 
 

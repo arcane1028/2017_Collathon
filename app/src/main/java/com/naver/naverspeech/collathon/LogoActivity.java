@@ -15,7 +15,7 @@ public class LogoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.logo_main);
 
-        final ImageView iv = (ImageView)findViewById(R.id.logo_down);
+        final ImageView iv = (ImageView)findViewById(R.id.logo_top);
 
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.alpha_ani);
         iv.startAnimation(animation);
