@@ -99,7 +99,6 @@ public class GameListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TODO 랜덤 기능
-                Intent intent = new Intent(GameListActivity.this, GameStartActivity.class);
                 Random random = new Random();
                 int randomPosition = random.nextInt(adapter.getCount());
                 Log.d("TEST RANDOM", randomPosition+"");
