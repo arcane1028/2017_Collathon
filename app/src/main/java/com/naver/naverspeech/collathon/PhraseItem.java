@@ -50,6 +50,10 @@ public class PhraseItem {
         return rank;
     }
 
+    public String getRank(int i) {
+        return rank.get(i);
+    }
+
     public void setRank(List<String> rank) {
         this.rank = rank;
     }
@@ -60,26 +64,5 @@ public class PhraseItem {
 
     public void setDataKey(String dataKey) {
         this.dataKey = dataKey;
-    }
-
-    public boolean isRank(int input_score){
-        int score=Integer.valueOf(rank.get(2).substring(11,21));
-        if(score>input_score)
-            return false;
-        return true;
-    }
-
-    public void addRank(String input_name,int input_score){
-        rank.remove(2);
-        rank.add(String.format("%-10s %10d",input_name,input_score));
-
-        int score=Integer.valueOf(rank.get(1).substring(11,21).replaceAll(" ", ""));
-        if(score<input_score) {
-            Collections.swap(rank, 1, 2);
-            score=Integer.valueOf(rank.get(0).substring(11,21).replaceAll(" ", ""));
-            if(score<input_score)
-                Collections.swap(rank, 0, 1);
-        }
-
     }
 }

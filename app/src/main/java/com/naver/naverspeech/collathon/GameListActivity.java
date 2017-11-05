@@ -68,6 +68,9 @@ public class GameListActivity extends AppCompatActivity {
                 activityIntent.putExtra("PHRASE", phraseItem.getPhrase());
                 activityIntent.putExtra("TIME", phraseItem.getTime());
                 activityIntent.putExtra("DATA_KEY", phraseItem.getDataKey());
+                activityIntent.putExtra("RANK0", phraseItem.getRank(0));
+                activityIntent.putExtra("RANK1", phraseItem.getRank(1));
+                activityIntent.putExtra("RANK2", phraseItem.getRank(2));
                 if (selectView != null)
                     selectView.setVisibility(View.GONE);
                 selectView = view.findViewById(R.id.rankList);
