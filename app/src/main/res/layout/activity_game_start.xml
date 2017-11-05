@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center">
 
     <TextView
         android:id="@+id/start_text_sentence"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/start_btn_recode"
-        android:layout_centerHorizontal="true"
-        android:text="예시 문장이 이곳에 보여 집니다." />
+        android:padding="30dp"
+        android:text="예시 문장이 이곳에 보여 집니다."
+        android:textSize="20dp"
+        android:
+        />
 
     <ImageButton
         android:id="@+id/start_btn_recode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:src="@drawable/ic_launcher"/>
-</RelativeLayout>
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/start_button_event"
+        android:scaleType="centerInside" />
+</LinearLayout>
