@@ -7,19 +7,29 @@
     android:gravity="center">
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="버튼을 누르고 아래문장을 읽으세요"
+        android:textSize="30dp"
+        android:layout_margin="30dp"
+        android:textAlignment="center"
+
+        />
+
+    <TextView
         android:id="@+id/start_text_sentence"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="30dp"
+        android:layout_margin="20dp"
+        android:padding="10dp"
         android:text="예시 문장이 이곳에 보여 집니다."
         android:textSize="20dp"
-        android:
+        android:background="@drawable/phrase_back"
         />
 
     <ImageButton
         android:id="@+id/start_btn_recode"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:background="@drawable/start_button_event"
-        android:scaleType="centerInside" />
+        android:background="@drawable/start_button_event" />
 </LinearLayout>
