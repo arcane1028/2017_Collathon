@@ -20,5 +20,5 @@
         android:id="@+id/result_btn_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="back" />
+        android:background="@drawable/button_event_back" />
 </LinearLayout>
