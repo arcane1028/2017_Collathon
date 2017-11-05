@@ -102,6 +102,10 @@ public class GameListActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //TODO 랜덤 기능
                 Random random = new Random();
+                if (adapter.getCount()<=0){
+                    Toast.makeText(GameListActivity.this, "잠시만 기다려 주세요", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 int randomPosition = random.nextInt(adapter.getCount());
                 Log.d("TEST RANDOM", randomPosition + "");
                 PhraseItem randomPhraseItem = (PhraseItem) adapter.getItem(randomPosition);
