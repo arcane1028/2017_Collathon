@@ -12,6 +12,7 @@
         android:id="@+id/result_text_score"
         android:text="예시 문장이 이곳에 보여 집니다."
         android:layout_above="@+id/result_btn_back"
+        android:layout_margin="30dp"
         />
 
     <Button
