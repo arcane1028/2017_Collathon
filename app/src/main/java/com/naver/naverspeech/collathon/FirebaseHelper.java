@@ -50,6 +50,7 @@ public class FirebaseHelper {
             PhraseItem phraseItem = ds.getValue(PhraseItem.class);
             //TODO 키받아 오는거
             Log.d("KEY TEST", ds.getKey());
+            phraseItem.setDataKey(ds.getKey());
             phraseItems.add(phraseItem);
         }
     }
