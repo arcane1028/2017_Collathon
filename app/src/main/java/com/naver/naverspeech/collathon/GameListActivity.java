@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import org.w3c.dom.Text;
 
 import java.util.List;
+import java.util.Random;
 
 public class GameListActivity extends AppCompatActivity {
     private Button create;
@@ -85,6 +87,10 @@ public class GameListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // TODO 선택 기능
+                if (selectView == null){
+                    Toast.makeText(GameListActivity.this, "문장을 선택해 주세요", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 startActivity(activityIntent);
             }
         });
@@ -94,7 +100,14 @@ public class GameListActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //TODO 랜덤 기능
                 Intent intent = new Intent(GameListActivity.this, GameStartActivity.class);
-                startActivity(intent);
+                Random random = new Random();
+                int randomPosition = random.nextInt(adapter.getCount());
+                Log.d("TEST RANDOM", randomPosition+"");
+                PhraseItem randomPhraseItem =(PhraseItem) adapter.getItem(randomPosition);
+
+                activityIntent.putExtra("PHRASE",  randomPhraseItem.getPhrase());
+                activityIntent.putExtra("TIME",  randomPhraseItem.getTime());
+                startActivity(activityIntent);
             }
         });
 

@@ -16,6 +16,9 @@ public class PhraseItem {
     private String time;
     //rank는 name/score의 형태로 저장되며 사용시 파싱해서 사용한다.
     List<String> rank = new ArrayList<>();
+    private String dataKey;
+
+
 
     public PhraseItem() {
     }
@@ -49,6 +52,14 @@ public class PhraseItem {
 
     public void setRank(List<String> rank) {
         this.rank = rank;
+    }
+
+    public String getDataKey() {
+        return dataKey;
+    }
+
+    public void setDataKey(String dataKey) {
+        this.dataKey = dataKey;
     }
 
     public boolean isRank(int input_score){
