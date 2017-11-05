@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    >
+    android:orientation="vertical">
 
     <TextView
+        android:id="@+id/result_text_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/result_text_score"
-        android:text="예시 문장이 이곳에 보여 집니다."
         android:layout_above="@+id/result_btn_back"
-        />
+        android:layout_margin="30dp"
+        android:background="@drawable/phrase_back"
+        android:padding="10dp"
+        android:text="예시 문장이 이곳에 보여 집니다." />
 
     <Button
+        android:id="@+id/result_btn_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/result_btn_back"
-        android:text="back"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:text="back" />
 </RelativeLayout>
