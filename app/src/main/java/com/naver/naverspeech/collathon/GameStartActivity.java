@@ -74,7 +74,8 @@ public class GameStartActivity extends Activity {
                 double resultScore = gameScore.parseSentence( txtResult.getText().toString(), results.get(0));
                 int result_time = Math.round(Integer.valueOf(Long.toString(end_time-start_time))/1000);
 
-                intent.putExtra("RESULT_SCORE", gameScore.calculateScore(100, goal_time-result_time, (int) resultScore));
+                intent.putExtra("RESULT_SCORE",
+                        gameScore.calculateScore(100, goal_time-result_time, (int) resultScore));
                 intent.putExtra("RESULT_PHRASE", txtResult.getText().toString());
                 intent.putExtra("DATA_KEY", dataKey);
                 startActivity(intent);
@@ -124,11 +125,7 @@ public class GameStartActivity extends Activity {
             @Override
             public void onClick(View v) {
                 if (!naverRecognizer.getSpeechRecognizer().isRunning()) {
-                    // Start button is pushed when SpeechRecognizer's state is inactive.
-                    // Run SpeechRecongizer by calling recognize().
                     mResult = "";
-                    //txtResult.setText("Connecting...");
-                    //startImageButton.setText(R.string.str_stop);
                     startImageButton.setEnabled(false);
                     naverRecognizer.recognize();
                 } else {
