@@ -28,15 +28,12 @@ public class GameResultActivity extends AppCompatActivity {
         //TODO 결과 보이기
         resultTextView.setText(Integer.toString(intent.getExtras().getInt("RESULT_SCORE")));
 
-        Log.d("TEST PHRASE", intent.getExtras().get("RESULT_PHRASE").toString());
-
         if(true){
             AlertDialog.Builder rank_dialog= new AlertDialog.Builder(this);
             rank_dialog.setTitle("이름을 입력하세요.");
 
             input_name=new EditText(this);
             input_name.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
-
 
             rank_dialog.setView(input_name);
 
@@ -58,7 +55,6 @@ public class GameResultActivity extends AppCompatActivity {
             rank_dialog.show();
 
         }
-
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override

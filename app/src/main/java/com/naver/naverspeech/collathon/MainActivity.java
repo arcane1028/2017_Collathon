@@ -36,16 +36,13 @@ public class MainActivity extends AppCompatActivity {
         });
         // 권한 요청
         int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO);
-        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
-
-        } else {
+        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {}
+        else {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.RECORD_AUDIO)) {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, 1);
             } else {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, 1);
             }
         }
-
-
     }
 }
