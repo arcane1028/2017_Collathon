@@ -78,6 +78,11 @@ public class GameStartActivity extends Activity {
                         gameScore.calculateScore(100, goal_time-result_time, (int) resultScore));
                 intent.putExtra("RESULT_PHRASE", txtResult.getText().toString());
                 intent.putExtra("DATA_KEY", dataKey);
+
+                intent.putExtra("RANK0", getIntent().getExtras().getString("RANK0"));
+                intent.putExtra("RANK1", getIntent().getExtras().getString("RANK1"));
+                intent.putExtra("RANK2",getIntent().getExtras().getString("RANK2"));
+
                 startActivity(intent);
                 finish();
 
