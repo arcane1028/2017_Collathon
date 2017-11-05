@@ -14,6 +14,8 @@
         android:background="@drawable/phrase_back"
         android:padding="10dp"
         android:text="예시 문장이 이곳에 보여 집니다." />
+        />
+
 
     <Button
         android:id="@+id/result_btn_back"

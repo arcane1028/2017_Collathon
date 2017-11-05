@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="추가하고 싶은 문장과 제한시간을 입력한 후 버튼을 눌러주세요"
+            android:text="문장과 시간을 입력하세요"
             android:textColor="#B4B4B4"
             android:textSize="15sp"
             android:textStyle="bold"
@@ -46,7 +46,7 @@
 
         <Button
             android:id="@+id/add_btn"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:text="추가" />
     </LinearLayout>
