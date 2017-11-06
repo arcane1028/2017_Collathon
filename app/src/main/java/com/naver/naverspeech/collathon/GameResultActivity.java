@@ -41,10 +41,6 @@ public class GameResultActivity extends AppCompatActivity {
         final int result_score=intent.getExtras().getInt("RESULT_SCORE");
         resultTextView.setText(Integer.toString(result_score));
 
-        Log.e("TEST PHRASE", intent.getExtras().get("RESULT_PHRASE").toString());
-        Log.e("TEST SCORE", Integer.toString(result_score));
-        Log.e("TEST SCORE", intent.getExtras().get("DATA_KEY").toString());
-
         data_key=intent.getExtras().get("DATA_KEY").toString();
         final List<String> rank = new ArrayList<>();
         for(int i=0;i<3;i++)
