@@ -41,8 +41,6 @@ public class GameScore {
             totalLength+=3*inputSub[i].length();
             equalCount+=parseWord(orignSub[i],inputSub[i]);
         }
-        System.out.println(totalLength);
-        System.out.println(equalCount);
         return (double)equalCount/(double)totalLength*100;
     }
 

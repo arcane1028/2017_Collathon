@@ -110,7 +110,6 @@ public class GameListActivity extends AppCompatActivity {
                     return;
                 }
                 int randomPosition = random.nextInt(adapter.getCount());
-                Log.d("TEST RANDOM", randomPosition + "");
                 PhraseItem randomPhraseItem = (PhraseItem) adapter.getItem(randomPosition);
 
                 activityIntent.putExtra("PHRASE", randomPhraseItem.getPhrase());
