@@ -74,6 +74,10 @@ public class GameStartActivity extends Activity {
                 double resultScore = gameScore.parseSentence( txtResult.getText().toString(), results.get(0));
                 int result_time = Math.round(Integer.valueOf(Long.toString(end_time-start_time))/1000);
 
+                Log.e("MATCH RATE",String.valueOf(resultScore));
+                Log.e("MATCH TIME",String.valueOf(result_time));
+
+
                 intent.putExtra("RESULT_SCORE",
                         gameScore.calculateScore(100, goal_time-result_time, (int) resultScore));
                 intent.putExtra("RESULT_PHRASE", txtResult.getText().toString());
@@ -136,7 +140,6 @@ public class GameStartActivity extends Activity {
                 } else {
                     Log.d(TAG, "stop and wait Final Result");
                     startImageButton.setEnabled(false);
-
                     naverRecognizer.getSpeechRecognizer().stop();
                 }
             }
